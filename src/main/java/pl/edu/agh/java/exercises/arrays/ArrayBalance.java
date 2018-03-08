@@ -25,10 +25,7 @@ public class ArrayBalance {
 		ArrayList<ArrayList<Integer>> nowa=new ArrayList<ArrayList<Integer>>();
 		arrayPermutation(array, 0, nowa);
 		for (ArrayList<Integer> a: nowa) {
-			for (Integer i: a) {
-				System.out.print(i);
-			}
-			System.out.println();
+			System.out.println(Arrays.toString(a.toArray()));
 		}
 		//testy
 		int left = 0;
@@ -43,8 +40,8 @@ public class ArrayBalance {
 					right += array[i];
 				}
 			}
-			out.println("LEFT: " + left);
-			out.println("RIGHT: " + right);
+			//out.println("LEFT: " + left);
+			//out.println("RIGHT: " + right);
 			if (left == right) {
 				return true;
 			} else {
@@ -60,8 +57,8 @@ public class ArrayBalance {
 					}
 				}
 			}
-			out.println("LEFT: " + left);
-			out.println("RIGHT: " + right);
+			//out.println("LEFT: " + left);
+			//out.println("RIGHT: " + right);
 			if (left == right) {
 				return true;
 			} else {
@@ -74,9 +71,9 @@ public class ArrayBalance {
 	public void arrayPermutation(int[] array,int stop,ArrayList<ArrayList<Integer>> nowa) {
 		if (stop==array.length-1) {
 			for (int i: array) {
-				System.out.println(i+",");
+				//System.out.println(i+",");
 			}
-			System.out.println();
+			//System.out.println();
 			ArrayList<Integer> arrayList = new ArrayList<Integer>();
 			for (int a: array) {
 				arrayList.add(a);
@@ -84,7 +81,7 @@ public class ArrayBalance {
 			nowa.add(arrayList);
 		}
 		else {
-			for (int j=0;j<array.length-1;j++) {
+			for (int j=stop;j<array.length;j++) {
 				int first=array[stop];
 				int second=array[j];
 				array[stop]=second;
