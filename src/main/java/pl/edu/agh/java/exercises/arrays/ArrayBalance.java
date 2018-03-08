@@ -2,6 +2,12 @@ package pl.edu.agh.java.exercises.arrays;
 
 import static java.lang.System.out;
 
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.management.ImmutableDescriptor;
+
 /**
  * Given an array, return true if there is a place to split the array so that
  * the sum of the numbers on one side is equal to the sum of the numbers on the
@@ -14,8 +20,17 @@ import static java.lang.System.out;
  */
 public class ArrayBalance {
 	public boolean canBalance(int[] array) {
-		arrayPermutation(array, 0);
-		System.out.println();
+
+		//testy
+		ArrayList<ArrayList<Integer>> nowa=new ArrayList<ArrayList<Integer>>();
+		arrayPermutation(array, 0, nowa);
+		for (ArrayList<Integer> a: nowa) {
+			for (Integer i: a) {
+				System.out.print(i);
+			}
+			System.out.println();
+		}
+		//testy
 		int left = 0;
 		int right = 0;
 
@@ -56,12 +71,17 @@ public class ArrayBalance {
 		}
 	}
 	
-	public void arrayPermutation(int[] array,int stop) {
+	public void arrayPermutation(int[] array,int stop,ArrayList<ArrayList<Integer>> nowa) {
 		if (stop==array.length-1) {
 			for (int i: array) {
-				System.out.print(i);
+				System.out.println(i+",");
 			}
 			System.out.println();
+			ArrayList<Integer> arrayList = new ArrayList<Integer>();
+			for (int a: array) {
+				arrayList.add(a);
+			}
+			nowa.add(arrayList);
 		}
 		else {
 			for (int j=0;j<array.length-1;j++) {
@@ -69,7 +89,7 @@ public class ArrayBalance {
 				int second=array[j];
 				array[stop]=second;
 				array[j]=first;
-				arrayPermutation(array,stop+1);
+				arrayPermutation(array,stop+1,nowa);
 				array[stop]=first;
 				array[j]=second;
 			}
