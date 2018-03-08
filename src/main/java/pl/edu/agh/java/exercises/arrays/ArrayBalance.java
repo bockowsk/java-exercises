@@ -1,5 +1,7 @@
 package pl.edu.agh.java.exercises.arrays;
 
+import static java.lang.System.out;
+
 /**
  * Given an array, return true if there is a place to split the array so that
  * the sum of the numbers on one side is equal to the sum of the numbers on the
@@ -12,6 +14,65 @@ package pl.edu.agh.java.exercises.arrays;
  */
 public class ArrayBalance {
 	public boolean canBalance(int[] array) {
-		throw new UnsupportedOperationException();
+		arrayPermutation(array, 0);
+		System.out.println();
+		int left = 0;
+		int right = 0;
+
+		if (array.length % 2 == 0) {
+			// calculate
+			for (int i = 0; i < array.length; i++) {
+				if (i < (array.length / 2)) {
+					left += array[i];
+				} else {
+					right += array[i];
+				}
+			}
+			out.println("LEFT: " + left);
+			out.println("RIGHT: " + right);
+			if (left == right) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			for (int i = 0; i < array.length; i++) {
+				if (i < (array.length / 2)) {
+					left += array[i];
+				} else {
+					if (i != (array.length / 2 + 1)) {
+						right += array[i];
+					}
+				}
+			}
+			out.println("LEFT: " + left);
+			out.println("RIGHT: " + right);
+			if (left == right) {
+				return true;
+			} else {
+				return false;
+			}
+
+		}
+	}
+	
+	public void arrayPermutation(int[] array,int stop) {
+		if (stop==array.length-1) {
+			for (int i: array) {
+				System.out.print(i);
+			}
+			System.out.println();
+		}
+		else {
+			for (int j=0;j<array.length-1;j++) {
+				int first=array[stop];
+				int second=array[j];
+				array[stop]=second;
+				array[j]=first;
+				arrayPermutation(array,stop+1);
+				array[stop]=first;
+				array[j]=second;
+			}
+		}
 	}
 }
