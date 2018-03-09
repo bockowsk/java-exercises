@@ -15,29 +15,43 @@ package pl.edu.agh.java.exercises.arrays;
  */
 public class ArraySpan {
 	public int maxSpan(int[] array) {
-		int maxSpan=0;
+		// globalnie dla metody, najwyzszy wynik
+		int maxSpan = 0;
+		// lecimy dla kazdego elementu (w sumie moze sie powtarzac)
 		for (int i = 0; i < array.length; i++) {
+			// temp variables dla sledzenia
+			boolean exists1 = false;
+			boolean exists2 = false;
+			// indeksy
 			int start = 0;
 			int stop = 0;
+			// troche redundantie, ze tu sprawdzamy, start przeciez wiadomy
+			// ale to dlatego, ze zle zrozumialem zadanie na poczatku
 			for (int index = 0; index < array.length; index++) {
 				if (array[index] == array[i]) {
+					exists1 = true;
 					start = index;
 					break;
 				}
 			}
-			if (start != 0 && start != array.length - 1) {
+			// sprawdzanie czy istnieje od konca
+			if (exists1 && start != array.length - 1) {
 				for (int index = array.length - 1; index > start + 1; index--) {
 					if (array[index] == array[i]) {
+						exists2 = true;
 						stop = index;
 						break;
 					}
 				}
 			}
-			if (start != 0 && stop != 0) {
-				int span=stop - start + 1;
-				if (span>maxSpan) maxSpan=span;
-			} else if (start != 0) {
-				if (1>=maxSpan) maxSpan=1;
+			// logika na update'owanie najlepszego wyniku = max span
+			if (exists1 && exists2) {
+				int span = stop - start + 1;
+				if (span > maxSpan)
+					maxSpan = span;
+			} else if (exists1) {
+				if (1 > maxSpan)
+					maxSpan = 1;
 			} else {
 				;
 			}
