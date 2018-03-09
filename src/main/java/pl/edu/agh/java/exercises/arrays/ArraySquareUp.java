@@ -12,6 +12,31 @@ package pl.edu.agh.java.exercises.arrays;
  */
 public class ArraySquareUp {
 	public int[] squareUp(int n) {
-		throw new UnsupportedOperationException();
+		int[] array = new int[n * n];
+		for (int i = 1; i <= n; i++) {
+			for (int j = n * i - 1, k = 1; j > n * (i - 1) - 1; j--) {
+				if (k > i) {
+					array[j] = 0;
+				} else {
+					array[j] = k;
+				}
+				k++;
+			}
+		}
+		// throw new UnsupportedOperationException();
+		for (int i : array) {
+			System.out.print("element: " + i + ", ");
+		}
+		System.out.println("stop");
+		return array;
 	}
 }
+
+/*
+ * NOTKI: logika dla 3, mamy od 0 do 2 (3 * 1 -1 ) , 3 do 5 (3 * 2 -1) i 6 - 8
+ * (3 * 3 -1) dla pierwszego mamy od tylu n i co krok n-1 (jak ujemny to 0) dla
+ * drugiego mamy od tylu n i co krok n-1 (jak ujemny to 0) dla trzeciego mamy od
+ * tylu n i co krok n-1 (jak ujemny to 0)
+ * 
+ * 
+ */
